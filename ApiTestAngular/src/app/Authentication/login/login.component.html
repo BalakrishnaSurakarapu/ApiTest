@@ -1,0 +1,97 @@
+<app-forgotpassword-popup *ngIf="showModal" (close)="closeModal()"></app-forgotpassword-popup>
+
+<!-- <div class="d-flex justify-content-center align-items-center vh-10 bg-light"> -->
+<h2 class="text-center mb-4">Login</h2>
+<div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offste-md-3">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="container text-center">
+      <div class="fom-group pt-3">
+        <div class="input-field"><span class="fa fa-user p-2"></span>
+          <input type="text" placeholder="Username" formControlName="userName">
+        </div>
+      </div>
+      <small class="text-danger"
+        *ngIf="loginForm.get('userName')?.touched && loginForm.get('userName')?.errors?.['required']">
+        Username is required.
+      </small>
+
+
+      <!-- <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input [type]="getType('password')" placeholder="Password"
+                                        formControlName="password" />
+                                    <span class="fa" [ngClass]="toggleField['password'] ? 'fa-eye' : 'fa-eye-slash'"
+                                        (click)="toggleVisibility('password')"></span>
+                                </div>
+                                <small class="text-danger"
+                                    *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                                    <ng-container *ngIf="password?.errors?.['required']">
+                                        Password is required.
+                                    </ng-container>
+                                    <ng-container
+                                        *ngIf="!password?.errors?.['required'] && password?.errors?.['minlength']">
+                                        Password must be at least 6 characters.
+                                    </ng-container>
+                                    <ng-container
+                                        *ngIf="!password?.errors?.['required'] && password?.errors?.['pattern']">
+                                        Password must contain uppercase, lowercase, number, and special character.
+                                    </ng-container>
+                                </small>
+       </div> -->
+      <!-- Password -->
+      <div class="fom-group pt-3">
+        <div class="input-field"><span class="fa fa-lock p-2"></span>
+          <input [type]="type" placeholder="password" formControlName="password"> <span class="fa {{eyeIcone}}"
+            (click)="hideshow()" style="cursor: pointer;"></span>
+        </div>
+      </div>
+      <small class="text-danger"
+        *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+        Password is required.
+      </small>
+      <small class="text-danger"
+        *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['minlength']">
+        Password must be at least 6 characters long.
+      </small>
+
+      <!-- Forgot Password -->
+      <div class="d-flex justify-content-end mt-2">
+        <a class="text-decoration-none fw-semibold" role="button" (click)="openModal()">
+          Forgot password?
+        </a>
+      </div>
+
+      <!-- Submit -->
+      <!-- <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="loginForm.invalid">
+        Login
+      </button> -->
+   <button type="submit" class="btn btn-primary btn-block mt-4 w-100"> Login </button>
+      <!-- Sign Up -->
+      <div class="text-center mt-3 text-muted">
+        Don't have an account?
+        <a routerLink="/register" class="fw-bold">Sign up</a>
+      </div>
+
+      <!-- Social Logins -->
+      <!-- <div class="text-center mt-4 border-top pt-3">
+      <p class="mb-2">Login with:</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://www.google.com" target="_blank">
+          <img src="https://img.icons8.com/color/48/000000/google-logo.png" width="30" />
+        </a>
+        <a href="https://www.facebook.com" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" width="30" />
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="30" />
+        </a>
+        <a href="https://www.github.com" target="_blank">
+          <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30" />
+        </a>
+      </div>
+    </div> -->
+
+    </div>
+  </form>
+</div>

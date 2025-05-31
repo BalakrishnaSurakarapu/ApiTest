@@ -1,0 +1,131 @@
+<h2 class="text-center mb-4">Register</h2>
+<div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offste-md-3">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="container text-center">
+      <div class="row g-2">
+        <div class="form-group col-6 pt-3">
+          <div class="input-field"><span class="fa fa-user p-2"></span>
+            <input type="text" placeholder="FirstName" formControlName="firstName" class="form-control">
+          </div>
+          <small class="text-danger"
+            *ngIf="signupForm.get('firstName')?.touched && signupForm.get('firstName')?.errors?.['required']">
+            FirstName is required.
+          </small>
+        </div>
+        <div class="fom-group col-6 pt-3">
+          <div class="input-field"><span class="fa fa-user p-2"></span>
+            <input type="text" placeholder="LastName" formControlName="lastName" class="form-control">
+          </div>
+          <small class="text-danger"
+            *ngIf="signupForm.get('lastName')?.touched && signupForm.get('lastName')?.errors?.['required']">
+            LastName is required.
+          </small>
+        </div>
+        <div class="fom-group col-6 pt-3">
+          <div class="input-field"><span class="fa fa-user p-2"></span>
+            <input type="text" placeholder="UserName" formControlName="userName" class="form-control">
+          </div>
+          <small class="text-danger"
+            *ngIf="signupForm.get('userName')?.touched && signupForm.get('userName')?.errors?.['required']">
+            UserName is required.
+          </small>
+        </div>
+        <div class="fom-group col-6 pt-3">
+          <div class="input-field"><span class="fa fa-user p-2"></span>
+            <input type="text" placeholder="MobileNo" formControlName="mobileNo" class="form-control">
+          </div>
+          <small class="text-danger"
+            *ngIf="signupForm.get('mobileNo')?.touched && signupForm.get('mobileNo')?.errors?.['required']">
+            MobileNo is required.
+          </small>
+        </div>
+        <div class="fom-group col-6 pt-3">
+          <div class="input-field"><span class="fa fa-user p-2"></span>
+            <input type="text" placeholder="Email" formControlName="EmailId" class="form-control">
+          </div>
+          <small class="text-danger"
+            *ngIf="signupForm.get('EmailId')?.touched && signupForm.get('EmailId')?.errors?.['required']">
+            Email is required.
+          </small>
+          <small class="text-danger"
+            *ngIf="signupForm.get('EmailId')?.touched && signupForm.get('EmailId')?.errors?.['email']">
+            Enter a valid email address.
+          </small>
+        </div>
+        <div class="fom-group col-6 pt-3">
+          <div class="input-field"><span class="fa fa-lock p-2"></span>
+            <input [type]="type" placeholder="password" formControlName="password"> <span class="fa {{eyeIcone}}"
+              (click)="hideshow()"></span>
+          </div>
+          <small class="text-danger"
+            *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['required']">
+            Password is required.
+          </small>
+          <small class="text-danger"
+            *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['minlength']">
+            Password must be at least 6 characters long.
+          </small>
+        </div>
+        <div class="form-group col-6 pt-3">
+          <div class="input-field">
+            <span class="fa fa-user p-2"></span>
+            <select formControlName="role" class="form-control">
+              <option value="" disabled>Select Role</option>
+              <option *ngFor="let role of roleOptions" [value]="role.id">
+                {{ role.name }}
+              </option>
+            </select>
+          </div>
+          <small class="text-danger" *ngIf="role?.touched && role?.errors?.['required']">
+            Role is required.
+          </small>
+        </div>
+        <div class="form-group col-6 pt-3">
+          <div class="input-field"><span class="fa fa-user p-2"></span>
+            <input type="file" placeholder="Upload Image" formControlName="imageFile" (change)="onFileSelected($event)"
+              accept="image/*">
+          </div>
+          <small class="text-danger" *ngIf="role?.touched && role?.errors?.['required']">
+            image is required.
+          </small>
+        </div>
+
+        <!-- Image Preview -->
+        <div class="form-group col-6 pt-3" *ngIf="imagePreview">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <p>Image Preview:</p>
+              <img [src]="imagePreview" alt="Profile Image" class="img-thumbnail"
+                style="max-width: 100%; height: auto;" />
+            </div>
+            <div class="col-4 mt-4">
+              <button type="button" class="btn btn-sm btn-danger" (click)="removeImage()">Remove</button>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-4 w-100"
+          [disabled]="signupForm.invalid">SignUp</button>
+        <div class="text-center pt-4 text-muted">you already have account?<a id="forget" routerLink="/login"
+            class="fw-bold">Login</a></div>
+      </div>
+    </div>
+  </form>
+</div>
+<!--   <div class="mx-3 my-2 py-2 bordert">
+             <div class="text-center mt-4 border-top pt-3">
+      <p class="mb-2">Login with:</p>
+       <div class="d-flex justify-content-center gap-3">
+        <a href="https://www.google.com" target="_blank">
+          <img src="https://img.icons8.com/color/48/000000/google-logo.png" width="30" />
+        </a>
+        <a href="https://www.facebook.com" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" width="30" />
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="30" />
+        </a>
+        <a href="https://www.github.com" target="_blank">
+          <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30" />
+        </a>
+      </div>
+    </div>  -->
