@@ -87,7 +87,7 @@ if (this.userId) {
   }
 
  onSubmit(): void {
-  if (this.signupForm.valid) {debugger
+  if (this.signupForm.valid) {
     const selectedRoleId = this.signupForm.value.role;
     const selectedRole = this.roleOptions.find(r => r.id === +selectedRoleId);
     // const formData = {
@@ -108,7 +108,7 @@ if (this.userId) {
       token: '',
       imageUrl:this.signupForm.get('imageUrl')?.value,
 };
-    if (this.userId > 0) {debugger
+    if (this.userId > 0) {
       this.api.updateUser(this.userId, formData).subscribe(() => {
         alert('User updated successfully');
         this.router.navigate(['/dashboard']);
