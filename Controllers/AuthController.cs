@@ -330,31 +330,55 @@ namespace ApiTest.Controllers
 
             return Ok(new { StatusCode = 200, message = "Password reset successfully" });
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, TestUser user)
-        {
-            if (id != user.UserId)
-                return BadRequest();
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> UpdateUser(int id, TestUser user)
+        //{
+        //    if (id != user.UserId)
+        //        return BadRequest();
 
+        //    var existingUser = await _context.TestUsers.FindAsync(id);
+        //    if (existingUser == null)
+        //        return NotFound();
+
+        //    existingUser.FirstName = user.FirstName;
+        //    existingUser.LastName = user.LastName;
+        //    existingUser.UserName = user.UserName;
+        //    existingUser.EmailId = user.EmailId;
+        //    existingUser.MobileNo = user.MobileNo;
+        //    existingUser.Role = user.Role;
+        //    existingUser.ImageUrl = user.ImageUrl;
+        //    existingUser.Password = user.Password;
+
+        //    // Update password only if supplied
+        //    if (!string.IsNullOrWhiteSpace(user.Password))
+        //    {
+        //        existingUser.PasswordHash = PasswordHelper.HashPassword(user.Password);
+
+        //        existingUser.Password = string.Empty;
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //    return NoContent();
+        //}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UpdateUserDto dto)
+        {
             var existingUser = await _context.TestUsers.FindAsync(id);
             if (existingUser == null)
                 return NotFound();
 
-            existingUser.FirstName = user.FirstName;
-            existingUser.LastName = user.LastName;
-            existingUser.UserName = user.UserName;
-            existingUser.EmailId = user.EmailId;
-            existingUser.MobileNo = user.MobileNo;
-            existingUser.Role = user.Role;
-            existingUser.ImageUrl = user.ImageUrl;
-            existingUser.Password = user.Password;
+            existingUser.FirstName = dto.FirstName;
+            existingUser.LastName = dto.LastName;
+            existingUser.UserName = dto.UserName;
+            existingUser.EmailId = dto.EmailId;
+            existingUser.MobileNo = dto.MobileNo;
+            existingUser.Role = dto.Role;
+            existingUser.ImageUrl = dto.ImageUrl;
 
-            // Update password only if supplied
-            if (!string.IsNullOrWhiteSpace(user.Password))
+            // Only update password if it is provided
+            if (!string.IsNullOrWhiteSpace(dto.Password))
             {
-                existingUser.PasswordHash = PasswordHelper.HashPassword(user.Password);
-               
-                existingUser.Password = string.Empty;
+                existingUser.PasswordHash = PasswordHelper.HashPassword(dto.Password);
             }
 
             await _context.SaveChangesAsync();

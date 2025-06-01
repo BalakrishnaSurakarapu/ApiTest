@@ -86,4 +86,7 @@ resetpasswordForm!: FormGroup;
   get confirmPassword() {
     return this.resetpasswordForm.get('confirmPassword');
   }
+  Reset(){
+    this.resetpasswordForm.reset();
+  }
 }

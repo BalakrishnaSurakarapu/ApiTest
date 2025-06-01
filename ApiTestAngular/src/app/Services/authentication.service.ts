@@ -39,7 +39,7 @@ export class AuthenticationService {
   }
 
   // Decode once, then cache the result
-   decodeToken(): any {debugger
+   decodeToken(): any {
     if (!this.decodedTokenCache) {
       const token = this.getToken();
       this.decodedTokenCache = token ? this.jwtHelper.decodeToken(token) : null;

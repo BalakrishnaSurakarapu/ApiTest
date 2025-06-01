@@ -6,5 +6,5 @@ export interface TestUser {
   mobileNo: string;
   emailId: string;
   password: string;
-  imageUrl?: string; // base64 or URL
+  imageUrl?: string;
 }

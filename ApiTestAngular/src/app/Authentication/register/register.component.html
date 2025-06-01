@@ -5,7 +5,7 @@
       <div class="row g-2">
         <div class="form-group col-6 pt-3">
           <div class="input-field"><span class="fa fa-user p-2"></span>
-            <input type="text" placeholder="FirstName" formControlName="firstName" class="form-control">
+            <input type="text" placeholder="Enter FirstName" formControlName="firstName" class="form-control">
           </div>
           <small class="text-danger"
             *ngIf="signupForm.get('firstName')?.touched && signupForm.get('firstName')?.errors?.['required']">
@@ -14,7 +14,7 @@
         </div>
         <div class="fom-group col-6 pt-3">
           <div class="input-field"><span class="fa fa-user p-2"></span>
-            <input type="text" placeholder="LastName" formControlName="lastName" class="form-control">
+            <input type="text" placeholder="Enter LastName" formControlName="lastName" class="form-control">
           </div>
           <small class="text-danger"
             *ngIf="signupForm.get('lastName')?.touched && signupForm.get('lastName')?.errors?.['required']">
@@ -23,7 +23,7 @@
         </div>
         <div class="fom-group col-6 pt-3">
           <div class="input-field"><span class="fa fa-user p-2"></span>
-            <input type="text" placeholder="UserName" formControlName="userName" class="form-control">
+            <input type="text" placeholder="Enter UserName" formControlName="userName" class="form-control">
           </div>
           <small class="text-danger"
             *ngIf="signupForm.get('userName')?.touched && signupForm.get('userName')?.errors?.['required']">
@@ -32,7 +32,7 @@
         </div>
         <div class="fom-group col-6 pt-3">
           <div class="input-field"><span class="fa fa-user p-2"></span>
-            <input type="text" placeholder="MobileNo" formControlName="mobileNo" class="form-control">
+            <input type="text" placeholder="Enter MobileNo" formControlName="mobileNo" class="form-control">
           </div>
           <small class="text-danger"
             *ngIf="signupForm.get('mobileNo')?.touched && signupForm.get('mobileNo')?.errors?.['required']">
@@ -41,20 +41,20 @@
         </div>
         <div class="fom-group col-6 pt-3">
           <div class="input-field"><span class="fa fa-user p-2"></span>
-            <input type="text" placeholder="Email" formControlName="EmailId" class="form-control">
+            <input type="email" placeholder="Enter your email" formControlName="emailId" class="form-control">
           </div>
           <small class="text-danger"
-            *ngIf="signupForm.get('EmailId')?.touched && signupForm.get('EmailId')?.errors?.['required']">
+            *ngIf="signupForm.get('emailId')?.touched && signupForm.get('emailId')?.errors?.['required']">
             Email is required.
           </small>
           <small class="text-danger"
-            *ngIf="signupForm.get('EmailId')?.touched && signupForm.get('EmailId')?.errors?.['email']">
+            *ngIf="signupForm.get('emailId')?.touched && signupForm.get('emailId')?.errors?.['email']">
             Enter a valid email address.
           </small>
         </div>
         <div class="fom-group col-6 pt-3">
           <div class="input-field"><span class="fa fa-lock p-2"></span>
-            <input [type]="type" placeholder="password" formControlName="password"> <span class="fa {{eyeIcone}}"
+            <input [type]="type" placeholder="Enter password" formControlName="password"> <span class="fa {{eyeIcone}}"
               (click)="hideshow()"></span>
           </div>
           <small class="text-danger"
@@ -69,7 +69,7 @@
         <div class="form-group col-6 pt-3">
           <div class="input-field">
             <span class="fa fa-user p-2"></span>
-            <select formControlName="role" class="form-control">
+            <select formControlName="role" class="form-control" placeholder="Select Role">
               <option value="" disabled>Select Role</option>
               <option *ngFor="let role of roleOptions" [value]="role.id">
                 {{ role.name }}
@@ -82,8 +82,9 @@
         </div>
         <div class="form-group col-6 pt-3">
           <div class="input-field"><span class="fa fa-user p-2"></span>
-            <input type="file" placeholder="Upload Image" formControlName="imageFile" (change)="onFileSelected($event)"
-              accept="image/*">
+            <!-- <input type="file" placeholder="Upload Image" formControlName="imageUrl" (change)="onFileSelected($event)"
+              accept="image/*"> -->
+              <input type="file" placeholder="Upload Image" (change)="onFileSelected($event)" accept="image/*" />
           </div>
           <small class="text-danger" *ngIf="role?.touched && role?.errors?.['required']">
             image is required.
@@ -103,10 +104,18 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block mt-4 w-100"
-          [disabled]="signupForm.invalid">SignUp</button>
+        <!-- <button type="submit" class="btn btn-primary btn-block mt-4 w-100"
+          [disabled]="signupForm.invalid">SignUp</button> -->
+ <div class="form-group row pt-3">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">Submit</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-secondary w-100" (click)="Reset()">Cancel</button>
+                        </div>
+                        </div>
         <div class="text-center pt-4 text-muted">you already have account?<a id="forget" routerLink="/login"
-            class="fw-bold">Login</a></div>
+            class="fw-bold" >Login</a></div>
       </div>
     </div>
   </form>

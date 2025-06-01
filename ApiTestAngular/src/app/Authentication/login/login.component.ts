@@ -38,13 +38,15 @@ loginForm: FormGroup;
   
   }
   get f() { return this.loginForm.controls; }
-
+    Reset(){
+      this.loginForm.reset();
+    }
   hideshow(){
     this.isText=!this.isText;
     this.isText?this.eyeIcone="fa-eye":this.eyeIcone="fa-eye-slash";
     this.isText? this.type="text":this.type="password";
   }
-  login() {debugger
+  login() {
   if (this.loginForm.valid) {
     this.api.login(this.loginForm.value).subscribe({
       next: (res:any) => {

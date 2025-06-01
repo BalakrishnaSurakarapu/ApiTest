@@ -63,10 +63,15 @@
       </div>
 
       <!-- Submit -->
-      <!-- <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="loginForm.invalid">
-        Login
-      </button> -->
-   <button type="submit" class="btn btn-primary btn-block mt-4 w-100"> Login </button>
+   <!-- <button type="submit" class="btn btn-primary btn-block mt-4 w-100" [disabled]="loginForm.invalid"> Login </button> -->
+     <div class="form-group row pt-3">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Submit</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-secondary w-100" (click)="Reset()">Cancel</button>
+                        </div>
+                        </div>
       <!-- Sign Up -->
       <div class="text-center mt-3 text-muted">
         Don't have an account?
