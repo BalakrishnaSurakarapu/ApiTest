@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   eyeIcone: string = 'fa-eye-slash';
   imagePreview: string | ArrayBuffer | null = '';
   userId: number = 0;
-
+isEditMode: boolean = false;
   roleOptions = [
     { id: 1, name: 'Admin' },
     { id: 2, name: 'User' },
@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
   this.userId = paramId ? +paramId : 0;
 
 if (this.userId) {
+   this.isEditMode = true;
   this.api.getUserById(this.userId).subscribe(user => {
     const roleId = this.roleOptions.find(r => r.name === user.role)?.id;
 
@@ -89,13 +90,24 @@ if (this.userId) {
   if (this.signupForm.valid) {debugger
     const selectedRoleId = this.signupForm.value.role;
     const selectedRole = this.roleOptions.find(r => r.id === +selectedRoleId);
+    // const formData = {
+    //   ...this.signupForm.value,
+    //   role: selectedRole?.name || '',
+    //   token: ''
+    // };
 
     const formData = {
-      ...this.signupForm.value,
+      firstName: this.signupForm.get('firstName')?.value, 
+      lastName: this.signupForm.get('lastName') ?.value,  
+      userName: this.signupForm.get('userName')?.value,
+      mobileNo: this.signupForm.get('mobileNo')?.value,
+      emailId: this.signupForm.get('emailId')?.value,
+      password: this.signupForm.get('password')?.value,   
+     //roe:this.signupForm.get('role')?.value,   
       role: selectedRole?.name || '',
-      token: ''
-    };
-
+      token: '',
+      imageUrl:this.signupForm.get('imageUrl')?.value,
+};
     if (this.userId > 0) {debugger
       this.api.updateUser(this.userId, formData).subscribe(() => {
         alert('User updated successfully');

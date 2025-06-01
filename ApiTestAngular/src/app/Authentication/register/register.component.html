@@ -1,4 +1,4 @@
-<h2 class="text-center mb-4">Register</h2>
+<h2 class="text-center mb-4"> {{ isEditMode ? 'Update' : 'Register' }}</h2>
 <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offste-md-3">
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
     <div class="container text-center">
@@ -108,7 +108,7 @@
           [disabled]="signupForm.invalid">SignUp</button> -->
  <div class="form-group row pt-3">
                         <div class="col-6">
-                            <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">Submit</button>
+                            <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">{{ isEditMode ? 'Update' : 'Submit' }}</button>
                         </div>
                         <div class="col-6">
                             <button type="button" class="btn btn-secondary w-100" (click)="Reset()">Cancel</button>
